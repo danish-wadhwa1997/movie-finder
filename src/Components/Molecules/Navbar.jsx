@@ -8,14 +8,16 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { IconButton } from "@material-ui/core";
+import { IconButton, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-const useStyles = makeStyles(
+
+const textfield = makeStyles(
   {
     root: {
       background: "#FFF",
       borderRadius: "5rem",
+
       "&:hover": {
         borderRadius: "5rem",
       },
@@ -28,50 +30,33 @@ const useStyles = makeStyles(
 );
 
 export default function Navbar(props) {
-  const classes = useStyles();
+  const classes = textfield();
   const history = useHistory();
-  const [lightTheme, setLightTheme] = React.useState(true);
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState();
 
-  const handleThemeToogle = () => {
-    setLightTheme(!lightTheme);
-    props.onSwitch(lightTheme);
-  };
-
   const getSearchResults = (searchValue) => {
-    console.log("results", searchValue);
-    // get(`http://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       setMovies(res.data.Search);
-    //       // props.onSearch(res.data.search);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
     props.onSearch(searchValue);
   };
 
   return (
     <Box>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           <Grid
             container
             direction="row"
             justify="space-between"
             alignItems="center"
-            spacing={3}
           >
-            <Grid item xs={1}>
-              Logo
+            <Grid item xs={2} md={3}>
+              <Typography variant="h6"> Logo</Typography>
             </Grid>
             <Grid item xs>
               <Autocomplete
                 className={classes.root}
                 freeSolo
+                margin="none"
                 size="small"
                 value={value || ""}
                 inputValue={inputValue || ""}
@@ -79,7 +64,6 @@ export default function Navbar(props) {
                 options={props.movies || []}
                 getOptionLabel={(option) => option.Title || ""}
                 onChange={(e, newValue) => {
-                  console.log("onChange clicked", newValue);
                   setValue(newValue);
                   if (e.key === "Enter") {
                     getSearchResults(inputValue);
@@ -97,7 +81,6 @@ export default function Navbar(props) {
                   }
                 }}
                 onInputChange={(e, newInputValue) => {
-                  console.log("input change clicked", newInputValue);
                   setInputValue(newInputValue);
                 }}
                 renderInput={(params) => (
@@ -109,11 +92,9 @@ export default function Navbar(props) {
                       ...params.InputProps,
                       type: "search",
                       endAdornment: (
-                        <InputAdornment>
+                        <InputAdornment position="end">
                           <IconButton
                             onClick={(e) => {
-                              console.log("click", inputValue);
-                              // onSearchClick(inputValue);
                               getSearchResults(inputValue);
                             }}
                           >
@@ -126,10 +107,10 @@ export default function Navbar(props) {
                 )}
               />
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={2} md={3} style={{ textAlign: "center" }}>
               <Switch
-                checked={lightTheme}
-                onChange={handleThemeToogle}
+                checked={props.lightTheme}
+                onChange={props.onSwitch}
                 name="themeSwitch"
                 inputProps={{ "aria-label": "Light/Dark Mode Toggle" }}
               />

@@ -5,17 +5,26 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import { Link } from "react-router-dom";
+import { useTheme } from "@material-ui/core/styles";
 function MovieCard(props) {
+  const theme = useTheme();
   const { Title, Poster, imdbID, Year } = props.movie;
   return (
     <Link to={`/${imdbID}`} style={{ textDecoration: "none" }}>
-      <Card>
+      <Card
+        raised
+        style={{
+          height: "100%",
+          backgroundColor: theme.palette.primary.dark,
+          color: theme.palette.primary.contrastText,
+        }}
+      >
         <CardActionArea>
           <CardMedia
             component="img"
             alt={Title}
-            // height="140"
             image={Poster}
+            // height="140"
             title={Title}
           />
           <CardContent>

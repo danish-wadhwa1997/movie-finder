@@ -1,4 +1,4 @@
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
 import { API_KEY } from "../../Contants";
 import { get } from "axios";
@@ -10,7 +10,6 @@ export default function DetailView() {
   const { id } = useParams();
   const history = useHistory();
   React.useEffect(() => {
-    console.log(id);
     get(`http://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`)
       .then((res) => {
         if (res.status === 200) {
@@ -23,19 +22,26 @@ export default function DetailView() {
   }, [id]);
 
   return (
-    <Box>
-      {movie && <MovieDetailCard movie={movie} />}
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(e) => {
-            history.replace("/");
-          }}
-        >
-          View Similar
-        </Button>
-      </div>
+    <Box p={3}>
+      <Grid container direction="column" justify="center" alignItems="center">
+        {movie && (
+          <Grid item xs>
+            {" "}
+            <MovieDetailCard movie={movie} />
+          </Grid>
+        )}
+        <Grid item xs>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => {
+              history.replace("/");
+            }}
+          >
+            View Similar
+          </Button>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

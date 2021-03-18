@@ -1,17 +1,19 @@
 import { Grid, Typography, Box } from "@material-ui/core";
 import React from "react";
 import MovieCard from "../Atoms/MovieCard";
+import { useTheme } from "@material-ui/core/styles";
 export default function ListView(props) {
-  if (props !== undefined && !props.movies) {
+  const theme = useTheme();
+  if (props.movies && props.movies.length === 0) {
     return (
-      <Box>
-        <Typography
-          align="center"
-          color="primary"
-          component="div"
-          display="block"
-          variant="h6"
-        >
+      <Box
+        style={{
+          backgroundColor: theme.palette.primary.light,
+          color: theme.palette.primary.contrastText,
+        }}
+        p={20}
+      >
+        <Typography align="center" component="div" display="block" variant="h6">
           No Movie to show with this value.
         </Typography>
       </Box>
@@ -22,11 +24,21 @@ export default function ListView(props) {
         container
         direction="row"
         justify="space-evenly"
-        alignItems="baseline"
-        spacing={4}
+        alignItems="stretch"
+        style={{
+          backgroundColor: theme.palette.primary.light,
+          color: theme.palette.primary.contrastText,
+        }}
       >
         {props.movies.map((movie) => (
-          <Grid key={movie.imdbID} item xs={12} sm={6} md={4}>
+          <Grid
+            key={movie.imdbID}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            style={{ padding: "1rem" }}
+          >
             <MovieCard movie={movie} />
           </Grid>
         ))}

@@ -1,5 +1,5 @@
-import Container from "@material-ui/core/Container";
-import Navbar from "./Components/Atoms/Navbar";
+import Navbar from "./Components/Molecules/Navbar";
+import Box from "@material-ui/core/Box";
 import ListView from "./Components/Molecules/ListView";
 import DetailView from "./Components/Molecules/DetailView";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -13,27 +13,25 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [lightTheme, setLightTheme] = React.useState(true);
   const getMoviesBySearch = (value) => {
-    // setMovies(value);
-    console.log("movies changed", value);
     get(`http://www.omdbapi.com/?s=${value}&apikey=${API_KEY}`)
       .then((res) => {
         if (res.status === 200) {
           setMovies(res.data.Search);
-          // props.onSearch(res.data.search);
         }
       })
       .catch((error) => {
         console.error(error);
       });
   };
-  const themeChange = (value) => {
-    setLightTheme(value);
+  const themeChange = () => {
+    setLightTheme(!lightTheme);
   };
-  const theme = lightTheme
+  const theme = !lightTheme
     ? createMuiTheme({
         palette: {
           primary: {
-            main: grey[50],
+            main: grey[400],
+            light: grey[100],
             contrastText: grey[900],
           },
           secondary: {
@@ -58,11 +56,17 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Container color="primary">
+        <Box
+          style={{
+            backgroundColor: theme.palette.primary.light,
+            height: "100vh",
+          }}
+        >
           <Navbar
             onSearch={getMoviesBySearch}
             onSwitch={themeChange}
             movies={movies}
+            lightTheme={lightTheme}
           />
           <Switch>
             <Route exact path="/:id" component={DetailView} />
@@ -70,7 +74,7 @@ function App() {
               <ListView movies={movies} />
             </Route>
           </Switch>
-        </Container>
+        </Box>
       </ThemeProvider>
     </Router>
   );

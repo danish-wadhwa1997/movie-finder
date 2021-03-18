@@ -12,15 +12,23 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [lightTheme, setLightTheme] = React.useState(true);
   const getMoviesBySearch = (value) => {
-    getMovies(value)
-      .then((res) => {
-        if (res.status === 200) {
-          setMovies(res.data.Search);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (value === "" || value === undefined || value === null) {
+      setMovies([]);
+    } else {
+      getMovies(value)
+        .then((res) => {
+          if (res.status === 200) {
+            if (res.data.Response.toLowerCase() === "true") {
+              setMovies(res.data.Search);
+            } else {
+              setMovies([]);
+            }
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
   const themeChange = () => {
     setLightTheme(!lightTheme);

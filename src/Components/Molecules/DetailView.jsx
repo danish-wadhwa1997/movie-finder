@@ -1,7 +1,6 @@
 import { Box, Button, Grid } from "@material-ui/core";
 import React from "react";
-import { API_KEY } from "../../Contants";
-import { get } from "axios";
+import { getMovieDetails } from "../../API";
 import { useParams, useHistory } from "react-router-dom";
 import MovieDetailCard from "../Atoms/MovieDetailCard";
 
@@ -10,7 +9,7 @@ export default function DetailView() {
   const { id } = useParams();
   const history = useHistory();
   React.useEffect(() => {
-    get(`http://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`)
+    getMovieDetails(id)
       .then((res) => {
         if (res.status === 200) {
           setMovie(res.data);

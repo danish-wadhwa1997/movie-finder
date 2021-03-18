@@ -6,14 +6,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
-import { API_KEY } from "./Contants";
-import { get } from "axios";
+import { getMovies } from "./API";
 
 function App() {
   const [movies, setMovies] = React.useState([]);
   const [lightTheme, setLightTheme] = React.useState(true);
   const getMoviesBySearch = (value) => {
-    get(`http://www.omdbapi.com/?s=${value}&apikey=${API_KEY}`)
+    getMovies(value)
       .then((res) => {
         if (res.status === 200) {
           setMovies(res.data.Search);

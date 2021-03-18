@@ -37,7 +37,8 @@ export default function ListView(props) {
             xs={12}
             sm={6}
             md={4}
-            style={{ padding: "1rem" }}
+            lg={3}
+            style={{ padding: "2vw 3vw" }}
           >
             <MovieCard movie={movie} />
           </Grid>

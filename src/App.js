@@ -11,7 +11,8 @@ import { getMovies } from "./API";
 function App() {
   const [movies, setMovies] = React.useState([]);
   const [lightTheme, setLightTheme] = React.useState(true);
-  const getMoviesBySearch = (value) => {
+  const [options, setOptions] = React.useState([]);
+  const getMoviesBySearch = (value, forOptionsOnly) => {
     if (value === "" || value === undefined || value === null) {
       setMovies([]);
     } else {
@@ -19,7 +20,12 @@ function App() {
         .then((res) => {
           if (res.status === 200) {
             if (res.data.Response.toLowerCase() === "true") {
-              setMovies(res.data.Search);
+              if (forOptionsOnly) {
+                setOptions(res.data.Search);
+              } else {
+                setMovies(res.data.Search);
+                setOptions(res.data.Search);
+              }
             } else {
               setMovies([]);
             }
@@ -73,6 +79,7 @@ function App() {
             onSearch={getMoviesBySearch}
             onSwitch={themeChange}
             movies={movies}
+            options={options}
             lightTheme={lightTheme}
           />
           <Switch>

@@ -35,8 +35,8 @@ export default function Navbar(props) {
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState();
 
-  const getSearchResults = (searchValue) => {
-    props.onSearch(searchValue);
+  const getSearchResults = (searchValue, forOptions) => {
+    props.onSearch(searchValue, forOptions);
   };
 
   return (
@@ -61,12 +61,12 @@ export default function Navbar(props) {
                 value={value || ""}
                 inputValue={inputValue || ""}
                 id="free-solo-2-demo"
-                options={props.movies || []}
+                options={props.options || []}
                 getOptionLabel={(option) => option.Title || ""}
                 onChange={(e, newValue) => {
                   setValue(newValue);
                   if (e.key === "Enter") {
-                    getSearchResults(inputValue);
+                    getSearchResults(inputValue, false);
                   } else {
                     if (
                       !(
@@ -82,6 +82,7 @@ export default function Navbar(props) {
                 }}
                 onInputChange={(e, newInputValue) => {
                   setInputValue(newInputValue);
+                  props.onSearch(newInputValue, true);
                 }}
                 renderInput={(params) => (
                   <TextField
@@ -95,7 +96,7 @@ export default function Navbar(props) {
                         <InputAdornment position="end">
                           <IconButton
                             onClick={(e) => {
-                              getSearchResults(inputValue);
+                              getSearchResults(inputValue, false);
                             }}
                           >
                             <SearchIcon />

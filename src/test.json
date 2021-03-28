@@ -11,7 +11,11 @@
           "defaultValue": "",
           "min": 0,
           "max": 240,
-          "dependent": ""
+          "dependent": "",
+          "validation": [
+            { "key": "1", "label": "Decimal check" },
+            { "key": "2", "label": "value required" }
+          ]
         },
         {
           "id": "gender",
@@ -23,7 +27,8 @@
             { "key": "2", "label": "Female" }
           ],
           "multiple": false,
-          "defaultValue": ""
+          "defaultValue": "",
+          "validation": [{ "key": "2", "label": "value required" }]
         },
         {
           "id": "pregnancy",
@@ -35,7 +40,8 @@
             { "key": "2", "label": "No" }
           ],
           "multiple": false,
-          "defaultValue": ""
+          "defaultValue": "",
+          "validation": [{ "key": "2", "label": "value required" }]
         },
         {
           "id": "contraceptive",
@@ -47,7 +53,8 @@
             { "key": "2", "label": "No" }
           ],
           "multiple": false,
-          "defaultValue": ""
+          "defaultValue": "",
+          "validation": [{ "key": "2", "label": "value required" }]
         },
         {
           "id": "avgSleep",
@@ -60,82 +67,58 @@
           "minLabel": "3 hours",
           "maxLabel": "12 hours",
           "valueSuffix": "hours",
-          "defaultValue": ""
+          "defaultValue": "",
+          "validation": [{ "key": "2", "label": "value required" }]
         },
         {
-          "type": "checkbox group" || "radio group",
+          "id": "diet",
+          "dependent": "",
+          "type": "radio group",
           "label": "",
+          "subGroupName": "diet",
+          "defaultValue": "",
           "options": [
             {
-              "type": "checkbox group" || "radio group",
-              "label": "",
-              "options": [
-                {
-                  "type": "checkbox group" || "radio group",
-                  "label": "",
-                  "options": [{}]
-                },
-                {
-                  "type": "checkbox" || "radio",
-                  "label": "",
-                  "values": ""
-                }
-              ]
+              "groupName": "diet",
+              "subGroupName": "",
+              "subGroupType": "",
+              "label": "No",
+              "id": "1"
             },
             {
-              "type": "checkbox" || "radio",
-              "label": "",
-              "values": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "image": "",
-      "title": "",
-      "questions": [
-        { "type": "number", "label": "", "value": "", "min": "", "max": "" },
-        {
-          "type": "select",
-          "label": "",
-          "options": [],
-          "multiple": "",
-          "defaultValue": " " || []
-        },
-        {
-          "type": "slider",
-          "min": "",
-          "max": "",
-          "step": "",
-          "label": "",
-          "minLabel": "",
-          "maxLabel": ""
-        },
-        {
-          "type": "checkbox group" || "radio group",
-          "label": "",
-          "options": [
-            {
-              "type": "checkbox group" || "radio group",
-              "label": "",
-              "options": [
-                {
-                  "type": "checkbox group" || "radio group",
-                  "label": "",
-                  "options": [{}]
-                },
-                {
-                  "type": "checkbox" || "radio",
-                  "label": "",
-                  "values": ""
-                }
-              ]
+              "groupName": "diet",
+              "subGroupName": "diet type",
+              "subGroupType": "checkbox grp",
+              "label": "keto",
+              "id": "2"
             },
             {
-              "type": "checkbox" || "radio",
-              "label": "",
-              "values": ""
+              "groupName": "diet",
+              "subGroupName": "diet type",
+              "subGroupType": "checkbox grp",
+              "label": "intermediate fasting",
+              "id": "3"
+            },
+            {
+              "groupName": "diet",
+              "subGroupName": "diet type",
+              "subGroupType": "checkbox grp",
+              "label": "restrictive",
+              "id": "4"
+            },
+            {
+              "groupName": "diet",
+              "subGroupName": "diet type",
+              "subGroupType": "checkbox grp",
+              "label": "nutritional professional",
+              "id": "5"
+            },
+            {
+              "groupName": "diet",
+              "subGroupName": "diet type",
+              "subGroupType": "checkbox grp",
+              "label": "others",
+              "id": "6"
             }
           ]
         }

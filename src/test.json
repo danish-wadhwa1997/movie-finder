@@ -1,0 +1,154 @@
+{
+  "question": [
+    {
+      "image": "",
+      "title": "",
+      "questions": [
+        {
+          "id": "weight",
+          "type": "number",
+          "label": "What is your weight",
+          "defaultValue": "",
+          "min": 0,
+          "max": 240,
+          "dependent": ""
+        },
+        {
+          "id": "gender",
+          "dependent": "",
+          "type": "select",
+          "label": "gender",
+          "options": [
+            { "key": "1", "label": "Male" },
+            { "key": "2", "label": "Female" }
+          ],
+          "multiple": false,
+          "defaultValue": ""
+        },
+        {
+          "id": "pregnancy",
+          "dependent": { "key": "gender", "value": "2" },
+          "type": "select",
+          "label": "Are you pregnant",
+          "options": [
+            { "key": "1", "label": "Yes" },
+            { "key": "2", "label": "No" }
+          ],
+          "multiple": false,
+          "defaultValue": ""
+        },
+        {
+          "id": "contraceptive",
+          "dependent": { "key": "pregnancy", "value": "1" },
+          "type": "select",
+          "label": "ARE YOU TAKING ANY CONTRACEPTIVES?",
+          "options": [
+            { "key": "1", "label": "Yes" },
+            { "key": "2", "label": "No" }
+          ],
+          "multiple": false,
+          "defaultValue": ""
+        },
+        {
+          "id": "avgSleep",
+          "dependent": "",
+          "type": "slider",
+          "min": "3",
+          "max": "12",
+          "step": "1",
+          "label": "Sleep on avg?",
+          "minLabel": "3 hours",
+          "maxLabel": "12 hours",
+          "valueSuffix": "hours",
+          "defaultValue": ""
+        },
+        {
+          "type": "checkbox group" || "radio group",
+          "label": "",
+          "options": [
+            {
+              "type": "checkbox group" || "radio group",
+              "label": "",
+              "options": [
+                {
+                  "type": "checkbox group" || "radio group",
+                  "label": "",
+                  "options": [{}]
+                },
+                {
+                  "type": "checkbox" || "radio",
+                  "label": "",
+                  "values": ""
+                }
+              ]
+            },
+            {
+              "type": "checkbox" || "radio",
+              "label": "",
+              "values": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "image": "",
+      "title": "",
+      "questions": [
+        { "type": "number", "label": "", "value": "", "min": "", "max": "" },
+        {
+          "type": "select",
+          "label": "",
+          "options": [],
+          "multiple": "",
+          "defaultValue": " " || []
+        },
+        {
+          "type": "slider",
+          "min": "",
+          "max": "",
+          "step": "",
+          "label": "",
+          "minLabel": "",
+          "maxLabel": ""
+        },
+        {
+          "type": "checkbox group" || "radio group",
+          "label": "",
+          "options": [
+            {
+              "type": "checkbox group" || "radio group",
+              "label": "",
+              "options": [
+                {
+                  "type": "checkbox group" || "radio group",
+                  "label": "",
+                  "options": [{}]
+                },
+                {
+                  "type": "checkbox" || "radio",
+                  "label": "",
+                  "values": ""
+                }
+              ]
+            },
+            {
+              "type": "checkbox" || "radio",
+              "label": "",
+              "values": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+// fetch pages
+// fetch image and title
+
+// questions container pass down questions
+
+// inside questions container
+// loop on questions array
+// based on type add that component pass down object properties

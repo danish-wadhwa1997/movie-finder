@@ -74,64 +74,74 @@
           "id": "diet",
           "dependent": "",
           "type": "radio group",
-          "label": "",
+          "label": "do you follow any diet",
           "subGroupName": "diet",
           "defaultValue": "",
           "options": [
             {
+              "hasContainer": "false",
+              "containerGroupID": "",
+              "containerGroupType": "",
               "groupName": "diet",
-              "subGroupName": "",
-              "subGroupType": "",
+              "groupType": "radio",
               "label": "No",
+              "optionType": "radio",
               "id": "1"
             },
             {
-              "groupName": "diet",
-              "subGroupName": "diet type",
-              "subGroupType": "checkbox grp",
+              "hasContainer": "true",
+              "containerGroupID": "diet",
+              "containerGroupType": "radio",
+              "groupName": "diet type",
+              "groupType": "checkbox",
+              "optionType": "checkbox",
               "label": "keto",
               "id": "2"
             },
             {
-              "groupName": "diet",
-              "subGroupName": "diet type",
-              "subGroupType": "checkbox grp",
+              "hasContainer": "true",
+              "containerGroupID": "diet",
+              "containerGroupType": "radio",
+              "optionType": "checkbox",
+              "groupName": "diet type",
+              "groupType": "checkbox",
               "label": "intermediate fasting",
               "id": "3"
             },
             {
-              "groupName": "diet",
-              "subGroupName": "diet type",
-              "subGroupType": "checkbox grp",
+              "hasContainer": "true",
+              "containerGroupID": "diet",
+              "containerGroupType": "radio",
+              "optionType": "checkbox",
+              "groupName": "diet type",
+              "groupType": "checkbox",
               "label": "restrictive",
               "id": "4"
             },
             {
-              "groupName": "diet",
-              "subGroupName": "diet type",
-              "subGroupType": "checkbox grp",
+              "hasContainer": "true",
+              "containerGroupID": "diet",
+              "containerGroupType": "radio",
+              "groupName": "diet type",
+              "groupType": "checkbox",
+              "optionType": "checkbox",
               "label": "nutritional professional",
               "id": "5"
             },
             {
-              "groupName": "diet",
-              "subGroupName": "diet type",
-              "subGroupType": "checkbox grp",
+              "hasContainer": "true",
+              "containerGroupID": "diet",
+              "containerGroupType": "radio",
+              "groupName": "diet type",
+              "groupType": "checkbox",
+              "optionType": "checkbox",
               "label": "others",
               "id": "6"
             }
-          ]
+          ],
+          "validation": [{ "key": "2", "label": "value required" }]
         }
       ]
     }
   ]
 }
-
-// fetch pages
-// fetch image and title
-
-// questions container pass down questions
-
-// inside questions container
-// loop on questions array
-// based on type add that component pass down object properties
